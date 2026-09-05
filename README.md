@@ -129,11 +129,22 @@ einen Block ergänzen.
 ## Entwicklung
 
 ```bash
+npm run link       # verlinkt den Projektordner in Stream Deck
 npm run watch      # baut neu und startet das Plugin
+npm run unlink     # entfernt es wieder aus Stream Deck
 npm test           # Tests gegen einen nachgebauten RadioBOSS-Server
 npm run typecheck  # tsc --noEmit
 npm run icons      # erzeugt alle PNGs neu (tools/generate-icons.mjs)
 ```
+
+Der verlinkte Entwicklungsstand und eine per Doppelklick installierte
+`.streamDeckPlugin` schließen sich aus — gleiche UUID, es geht immer nur eins.
+`npm run unlink` beendet das Plugin erst und räumt es dann weg; ohne das Stoppen
+scheitert das Löschen an offenen Dateien. Das `--delete` darin entfernt auch eine
+echte Installation, nicht nur den Link.
+
+Deine Verbindungsdaten liegen in den Global settings von Stream Deck und
+überstehen das Entfernen.
 
 Die Icons werden aus Distanzfeldern gerendert und mit dem eingebauten `zlib`
 kodiert; es gibt also keine Bild-Abhängigkeit im Build.

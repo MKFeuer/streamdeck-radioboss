@@ -5,7 +5,9 @@
         "typecheck": "tsc --noEmit",
         "test": "tsc -p tsconfig.test.json && node tools/prepare-tests.mjs && node --test \"test/*.test.cjs\"",
         "pack": "npm run build && streamdeck pack com.moritz-koschel.radioboss.sdPlugin --force",
-        "watch": "rollup -c -w --watch.onEnd=\"streamdeck restart com.moritz-koschel.radioboss\""
+        "watch": "rollup -c -w --watch.onEnd=\"streamdeck restart com.moritz-koschel.radioboss\"",
+        "link": "streamdeck link com.moritz-koschel.radioboss.sdPlugin",
+        "unlink": "streamdeck stop com.moritz-koschel.radioboss && streamdeck unlink com.moritz-koschel.radioboss --delete"
     },
     "type": "module",
     "devDependencies": {
