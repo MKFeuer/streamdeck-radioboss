@@ -1,0 +1,5 @@
+# Runtime logs written by the plugin into its own folder.
+logs/
+
+# Source maps are only emitted while watching.
+*.map

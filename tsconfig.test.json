@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"target": "ES2022",
+		"module": "CommonJS",
+		"moduleResolution": "Node10",
+		"strict": true,
+		"noImplicitOverride": true,
+		"skipLibCheck": true,
+		"rootDir": "src",
+		"outDir": ".test-build"
+	},
+	"include": [
+		"src/radioboss/settings.ts",
+		"src/radioboss/client.ts"
+	]
+}

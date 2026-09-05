@@ -1,0 +1,24 @@
+{
+	"Name": "Control for RadioBOSS",
+	"Description": "Steuert RadioBOSS über dessen Remote Control API vom Stream Deck aus.",
+	"com.moritz-koschel.radioboss.mic": {
+		"Name": "Mikrofon",
+		"Tooltip": "Schaltet das RadioBOSS-Mikrofon an, stumm, oder um.",
+		"States": [
+			{
+				"Name": "Stumm"
+			},
+			{
+				"Name": "Live"
+			}
+		]
+	},
+	"Localization": {
+		"LIVE": "LIVE",
+		"MUTED": "STUMM",
+		"ERROR": "FEHLER",
+		"Not configured": "Nicht konfiguriert",
+		"Enter the API password first.": "Bitte zuerst das API-Passwort eintragen.",
+		"Connected to": "Verbunden mit"
+	}
+}

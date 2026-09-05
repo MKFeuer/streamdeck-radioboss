@@ -1,0 +1,57 @@
+/* Styles for the connection panel and the slider read-out in mic.html. */
+
+/*
+ * sdpi-components define these tokens on each component's own `:host`, so the
+ * shadow DOM keeps them out of reach of our elements. Mirrored verbatim here
+ * (--font-color, --font-family, --font-size from the v4 bundle) so our text
+ * matches the option labels exactly rather than approximately.
+ */
+body {
+    --sdpi-font-color: #969696;
+    --sdpi-font-family: "Segoe UI", Arial, Roboto, Helvetica sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --sdpi-font-size: 9pt;
+
+    /* sdpi's --input-bg-color, used here as a hairline rule. */
+    --sdpi-rule-color: #3d3d3d;
+}
+
+.section,
+.hint,
+.value,
+#test-result {
+    color: var(--sdpi-font-color);
+    font-family: var(--sdpi-font-family);
+    font-size: var(--sdpi-font-size);
+}
+
+.section {
+    margin: 16px 0 6px 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--sdpi-rule-color);
+}
+
+.hint {
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Live read-out under a slider. */
+.value {
+    display: block;
+    margin-top: 2px;
+}
+
+#test-result {
+    display: none;
+    margin: 4px 0 0 0;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+#test-result.ok {
+    color: #4bd07a;
+}
+
+#test-result.failed {
+    color: #ff5a4d;
+}

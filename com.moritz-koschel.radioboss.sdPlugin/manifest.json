@@ -1,0 +1,52 @@
+{
+	"Name": "Control for RadioBOSS",
+	"Version": "1.0.0.0",
+	"Author": "Moritz Koschel",
+	"Actions": [
+		{
+			"Name": "Microphone",
+			"UUID": "com.moritz-koschel.radioboss.mic",
+			"Icon": "imgs/actions/mic/icon",
+			"Tooltip": "Turns the RadioBOSS microphone on, off, or toggles it.",
+			"PropertyInspectorPath": "ui/mic.html",
+			"Controllers": [
+				"Keypad"
+			],
+			"States": [
+				{
+					"Image": "imgs/actions/mic/key-off",
+					"Name": "Muted",
+					"TitleAlignment": "bottom"
+				},
+				{
+					"Image": "imgs/actions/mic/key-on",
+					"Name": "Live",
+					"TitleAlignment": "bottom"
+				}
+			]
+		}
+	],
+	"Category": "Control for RadioBOSS",
+	"CategoryIcon": "imgs/plugin/category-icon",
+	"CodePath": "bin/plugin.js",
+	"Description": "Control RadioBOSS from your Stream Deck through its remote control API.",
+	"Icon": "imgs/plugin/marketplace",
+	"SDKVersion": 3,
+	"Software": {
+		"MinimumVersion": "7.1"
+	},
+	"OS": [
+		{
+			"Platform": "mac",
+			"MinimumVersion": "12"
+		},
+		{
+			"Platform": "windows",
+			"MinimumVersion": "10"
+		}
+	],
+	"Nodejs": {
+		"Version": "24"
+	},
+	"UUID": "com.moritz-koschel.radioboss"
+}

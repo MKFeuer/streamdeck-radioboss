@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Microphone</title>
+    <meta charset="utf-8" />
+    <script src="https://sdpi-components.dev/releases/v4/sdpi-components.js"></script>
+    <script src="i18n.js"></script>
+    <link rel="stylesheet" href="connection.css" />
+</head>
+
+<body>
+    <!--
+        Per-key behaviour. These live in the action's own settings, so every button
+        can be set up differently.
+
+        `__MSG_x__` is resolved by sdpi-components against the locales set in
+        i18n.js; plain markup uses `data-i18n` instead.
+    -->
+    <sdpi-item label="__MSG_onKeyPress__">
+        <sdpi-select setting="mode" default="toggle">
+            <option value="toggle">__MSG_modeToggle__</option>
+            <option value="on">__MSG_modeOn__</option>
+            <option value="off">__MSG_modeOff__</option>
+        </sdpi-select>
+    </sdpi-item>
+
+    <sdpi-item label="__MSG_pollStatus__">
+        <sdpi-range id="poll-interval" setting="pollInterval" min="0" max="10" step="1" default="2" showlabels>
+            <span slot="min" data-i18n="pollOff"></span>
+            <span slot="max" data-i18n="pollMax"></span>
+        </sdpi-range>
+        <span id="poll-interval-value" class="value"></span>
+    </sdpi-item>
+
+    <sdpi-item label="__MSG_keyTitle__">
+        <sdpi-checkbox setting="showTitle" label="__MSG_showTitle__"></sdpi-checkbox>
+    </sdpi-item>
+
+    <!--
+        Connection details. The `global` attribute persists these into the plugin's
+        global settings, so they are shared by every RadioBOSS key rather than being
+        re-entered for each one.
+    -->
+    <div class="section" data-i18n="connection"></div>
+
+    <sdpi-item label="__MSG_host__">
+        <sdpi-textfield setting="host" global placeholder="127.0.0.1"></sdpi-textfield>
+    </sdpi-item>
+
+    <sdpi-item label="__MSG_port__">
+        <sdpi-textfield setting="port" global placeholder="9000" pattern="^[0-9]{1,5}$"></sdpi-textfield>
+    </sdpi-item>
+
+    <sdpi-item label="__MSG_user__">
+        <sdpi-textfield id="user" setting="user" global></sdpi-textfield>
+    </sdpi-item>
+
+    <sdpi-item label="__MSG_password__">
+        <sdpi-password setting="password" global required></sdpi-password>
+    </sdpi-item>
+
+    <sdpi-item label="__MSG_https__">
+        <sdpi-checkbox setting="secure" global label="__MSG_secure__"></sdpi-checkbox>
+    </sdpi-item>
+
+    <sdpi-item label="__MSG_timeout__">
+        <sdpi-textfield setting="timeout" global placeholder="4000" pattern="^[0-9]{3,5}$"></sdpi-textfield>
+    </sdpi-item>
+
+    <sdpi-item>
+        <sdpi-button id="test" data-i18n="testConnection"></sdpi-button>
+    </sdpi-item>
+
+    <sdpi-item>
+        <p id="test-result"></p>
+    </sdpi-item>
+
+    <sdpi-item>
+        <p class="hint" data-i18n="hint"></p>
+    </sdpi-item>
+
+    <script src="connection.js"></script>
+    <script>
+        // Shows what the poll slider is currently set to, updating as it is dragged.
+        (() => {
+            const range = document.querySelector("#poll-interval");
+            const output = document.querySelector("#poll-interval-value");
+
+            /**
+             * @param {number} seconds Interval to describe.
+             */
+            function show(seconds) {
+                if (!Number.isFinite(seconds)) {
+                    return;
+                }
+
+                output.textContent =
+                    seconds === 0 ? t("intervalOff") : seconds === 1 ? t("intervalOne") : t("intervalMany", seconds);
+            }
+
+            // `input` is composed, so it crosses the component's shadow boundary
+            // while dragging. The host's own value only catches up on release, so
+            // read the inner input the event actually came from.
+            range.addEventListener("input", (ev) => show(Number(ev.composedPath()[0].value)));
+
+            // Fires whenever the value is committed — including once the persisted
+            // setting has loaded, which is what fills the label on open.
+            range.addEventListener("valuechange", () => show(Number(range.value)));
+
+            // Placeholders are not localized by sdpi-components.
+            document.querySelector("#user").placeholder = t("userOptional");
+        })();
+    </script>
+</body>
+
+</html>

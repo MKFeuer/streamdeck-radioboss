@@ -1,0 +1,10 @@
+{
+	"Localization": {
+		"LIVE": "LIVE",
+		"MUTED": "MUTED",
+		"ERROR": "ERROR",
+		"Not configured": "Not configured",
+		"Enter the API password first.": "Enter the API password first.",
+		"Connected to": "Connected to"
+	}
+}
